@@ -1,0 +1,311 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ── PROPERTIES ──────────────────────────────
+
+model Property {
+  id    String @id @default(cuid())
+  slug  String @unique
+
+  title       String
+  description String  @db.Text
+  type        PropertyType
+  status      PropertyStatus
+
+  price        Int
+  pricePerSqft Int?
+
+  address String
+  city    String
+  area    String
+  state   String @default("NY")
+  zipCode String
+  lat     Float?
+  lng     Float?
+
+  bedrooms  Int?
+  bathrooms Float?
+  sqft      Int?
+  yearBuilt Int?
+  floors    Int?
+  parking   Int?
+
+  amenities String[]
+  utilities String[]
+
+  images         String[]
+  videoUrl       String?
+  virtualTourUrl String?
+  floorPlanUrl   String?
+
+  isAvailable Boolean @default(true)
+  isFeatured  Boolean @default(false)
+  isNew       Boolean @default(true)
+  isHot       Boolean @default(false)
+  isReduced   Boolean @default(false)
+
+  availableFrom   DateTime?
+  securityDeposit Int?
+  petFriendly     Boolean @default(false)
+
+  agentId      String
+  agent        Agent         @relation(fields: [agentId], references: [id])
+  favorites    Favorite[]
+  applications Application[]
+  inquiries    Inquiry[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([city, status])
+  @@index([type, status])
+  @@index([price])
+  @@index([isFeatured])
+}
+
+enum PropertyType {
+  RESIDENTIAL
+  COMMERCIAL
+  CONDO
+  TOWNHOUSE
+  STUDIO
+  LOFT
+}
+
+enum PropertyStatus {
+  RENT
+  SALE
+  LEASED
+  SOLD
+}
+
+// ── AGENTS ──────────────────────────────────
+
+model Agent {
+  id   String @id @default(cuid())
+  slug String @unique
+
+  name  String
+  title String
+  bio   String @db.Text
+  photo String
+
+  email     String  @unique
+  phone     String
+  linkedin  String?
+  instagram String?
+
+  propertiesSold  Int   @default(0)
+  yearsExperience Int   @default(0)
+  rating          Float @default(5.0)
+
+  specialties String[]
+  languages   String[]
+
+  isActive   Boolean @default(true)
+  isFeatured Boolean @default(false)
+
+  properties Property[]
+  reviews    AgentReview[]
+
+  createdAt DateTime @default(now())
+}
+
+model AgentReview {
+  id           String   @id @default(cuid())
+  rating       Int
+  comment      String   @db.Text
+  authorName   String
+  authorAvatar String?
+  agentId      String
+  agent        Agent    @relation(fields: [agentId], references: [id])
+  createdAt    DateTime @default(now())
+}
+
+// ── USERS ────────────────────────────────────
+
+model User {
+  id         String @id @default(cuid())
+  supabaseId String @unique
+
+  email     String @unique
+  firstName String
+  lastName  String
+  phone     String?
+  avatar    String?
+  role      UserRole @default(CLIENT)
+
+  alertEmail Boolean @default(true)
+  alertSMS   Boolean @default(false)
+
+  favorites     Favorite[]
+  applications  Application[]
+  savedSearches SavedSearch[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum UserRole {
+  CLIENT
+  AGENT
+  ADMIN
+}
+
+// ── FAVORITES ────────────────────────────────
+
+model Favorite {
+  id         String   @id @default(cuid())
+  userId     String
+  propertyId String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@unique([userId, propertyId])
+}
+
+// ── APPLICATIONS ─────────────────────────────
+
+model Application {
+  id         String   @id @default(cuid())
+  propertyId String
+  property   Property @relation(fields: [propertyId], references: [id])
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id])
+
+  firstName        String
+  lastName         String
+  email            String
+  phone            String
+  annualIncome     Int?
+  creditScore      String?
+  employmentStatus String?
+  employer         String?
+
+  moveInDate     DateTime?
+  occupants      Int       @default(1)
+  hasPets        Boolean   @default(false)
+  petDescription String?
+  message        String?   @db.Text
+  documents      String[]
+
+  status    ApplicationStatus @default(PENDING)
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+}
+
+enum ApplicationStatus {
+  PENDING
+  REVIEWING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+// ── INQUIRIES ────────────────────────────────
+
+model Inquiry {
+  id         String    @id @default(cuid())
+  propertyId String?
+  property   Property? @relation(fields: [propertyId], references: [id])
+
+  type    InquiryType
+  name    String
+  email   String
+  phone   String?
+  message String      @db.Text
+
+  lookingFor String?
+  budget     String?
+  timeline   String?
+  isRead     Boolean @default(false)
+
+  createdAt DateTime @default(now())
+}
+
+enum InquiryType {
+  RENT
+  PURCHASE
+  SELL
+  PROPERTY_MANAGEMENT
+  VALUATION
+  MORTGAGE
+  GENERAL
+}
+
+// ── SAVED SEARCHES ───────────────────────────
+
+model SavedSearch {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name         String
+  filters      Json
+  alertEnabled Boolean        @default(true)
+  frequency    AlertFrequency @default(DAILY)
+
+  createdAt DateTime @default(now())
+}
+
+enum AlertFrequency {
+  REALTIME
+  DAILY
+  WEEKLY
+}
+
+// ── BLOG ─────────────────────────────────────
+
+model BlogPost {
+  id   String @id @default(cuid())
+  slug String @unique
+
+  title      String
+  excerpt    String
+  content    String       @db.Text
+  coverImage String
+  category   BlogCategory
+  tags       String[]
+
+  author       String
+  authorAvatar String?
+  readingTime  Int?
+
+  isPublished Boolean   @default(false)
+  publishedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum BlogCategory {
+  RENTERS_TIPS
+  BUYERS_GUIDE
+  SELLERS_GUIDE
+  MARKET_UPDATE
+  NEIGHBORHOOD
+  INVESTMENT
+  PROPERTY_MANAGEMENT
+}
+
+// ── TESTIMONIALS ─────────────────────────────
+
+model Testimonial {
+  id         String   @id @default(cuid())
+  name       String
+  avatar     String?
+  role       String
+  rating     Int
+  content    String   @db.Text
+  isVerified Boolean  @default(false)
+  isFeatured Boolean  @default(false)
+  createdAt  DateTime @default(now())
+}
