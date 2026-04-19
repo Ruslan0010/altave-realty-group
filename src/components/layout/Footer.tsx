@@ -107,19 +107,19 @@ export default function Footer() {
             </Link>
 
             <p className="text-sm text-text-muted leading-relaxed max-w-xs mb-8">
-              Altave Realty Group is New York City&apos;s premier full-service real estate firm,
+              Altave Realty Group is Halifax&apos;s premier full-service real estate firm,
               delivering an elevated experience for rentals, sales, and commercial properties
-              across all five boroughs.
+              across Halifax Regional Municipality.
             </p>
 
             {/* Contact info */}
             <div className="space-y-3 mb-8">
               <a
-                href="tel:+12125550100"
+                href="tel:+19025550100"
                 className="flex items-center gap-3 text-sm text-text-muted hover:text-gold transition-colors"
               >
                 <Phone className="w-4 h-4 text-gold flex-shrink-0" />
-                +1 (212) 555-0100
+                +1 (902) 555-0100
               </a>
               <a
                 href="mailto:info@altaverealty.com"
@@ -131,9 +131,9 @@ export default function Footer() {
               <div className="flex items-start gap-3 text-sm text-text-muted">
                 <MapPin className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
                 <span>
-                  123 Park Avenue, Suite 800
+                  1871 Hollis St, Suite 800
                   <br />
-                  New York, NY 10017
+                  Halifax, NS B3J 0C3
                 </span>
               </div>
             </div>

@@ -141,7 +141,7 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-gold uppercase tracking-[0.4em] text-xs font-heading font-semibold mb-6"
         >
-          New York&apos;s Premier Real Estate
+          Halifax&apos;s Premier Real Estate
         </motion.p>
 
         <motion.h1
@@ -167,7 +167,7 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="mt-6 text-text-secondary font-body text-lg max-w-xl"
         >
-          Premium rentals, sales, and commercial properties across New York City and beyond.
+          Premium rentals, sales, and commercial properties across Halifax Regional Municipality.
         </motion.p>
 
         <motion.div

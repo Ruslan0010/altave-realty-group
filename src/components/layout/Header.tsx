@@ -19,7 +19,7 @@ const NAV_ITEMS: NavItem[] = [
     children: [
       { label: 'All Properties', href: '/properties', description: 'Browse our full catalogue' },
       { label: 'Rentals', href: '/properties/rentals', description: 'Find your next home' },
-      { label: 'Sales', href: '/properties/sales', description: 'Invest in NYC real estate' },
+      { label: 'Sales', href: '/properties/sales', description: 'Invest in Halifax real estate' },
       { label: 'Commercial', href: '/properties/commercial', description: 'Office & retail spaces' },
     ],
   },
