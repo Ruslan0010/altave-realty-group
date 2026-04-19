@@ -36,7 +36,7 @@ export function FeaturedListings({ properties }: FeaturedListingsProps) {
             overline="Handpicked for You"
             title="Featured"
             titleGold="Properties"
-            description="Explore our curated selection of premium properties across New York City."
+            description="Explore our curated selection of premium rentals and homes across Halifax Regional Municipality."
           />
 
           {/* Tabs */}

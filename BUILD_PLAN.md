@@ -220,7 +220,7 @@ Update this as phases complete:
 
 - [x] Phase 1 — Foundation
 - [x] Phase 2 — Homepage
-- [ ] Phase 3 — Property Catalogue
+- [x] Phase 3 — Property Catalogue
 - [ ] Phase 4 — Inner Pages
 - [ ] Phase 5 — Auth & Dashboard
 - [ ] Phase 6 — API Routes

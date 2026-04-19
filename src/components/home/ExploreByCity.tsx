@@ -8,40 +8,40 @@ import { staggerContainer, scaleUp } from '@/lib/animations'
 
 const CITIES = [
   {
-    name: 'Manhattan',
-    count: '800+',
-    image: 'https://images.unsplash.com/photo-1518235506717-e1ed3306a89b?w=600&q=80',
-    href: '/properties?city=Manhattan',
-  },
-  {
-    name: 'Brooklyn',
-    count: '450+',
-    image: 'https://images.unsplash.com/photo-1555109307-f7d9da25c244?w=600&q=80',
-    href: '/properties?city=Brooklyn',
-  },
-  {
-    name: 'Queens',
-    count: '320+',
-    image: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80',
-    href: '/properties?city=Queens',
-  },
-  {
-    name: 'The Bronx',
-    count: '190+',
-    image: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600&q=80',
-    href: '/properties?city=The+Bronx',
-  },
-  {
-    name: 'Staten Island',
+    name: 'Downtown Halifax',
     count: '120+',
-    image: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=600&q=80',
-    href: '/properties?city=Staten+Island',
+    image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80',
+    href: '/properties?area=Downtown+Halifax',
   },
   {
-    name: 'Hoboken',
-    count: '90+',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80',
-    href: '/properties?city=Hoboken',
+    name: 'North End',
+    count: '85+',
+    image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80',
+    href: '/properties?area=North+End',
+  },
+  {
+    name: 'South End',
+    count: '60+',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80',
+    href: '/properties?area=South+End',
+  },
+  {
+    name: 'Bedford',
+    count: '95+',
+    image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&q=80',
+    href: '/properties?area=Bedford',
+  },
+  {
+    name: 'Clayton Park',
+    count: '70+',
+    image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80',
+    href: '/properties?area=Clayton+Park',
+  },
+  {
+    name: 'Dartmouth',
+    count: '110+',
+    image: 'https://images.unsplash.com/photo-1575517111839-3a3843ee7f5d?w=600&q=80',
+    href: '/properties?area=Dartmouth',
   },
 ]
 
@@ -53,8 +53,8 @@ export function ExploreByCity() {
           <SectionTitle
             overline="Explore"
             title="Properties by"
-            titleGold="City"
-            description="Discover luxury homes and commercial spaces across New York City's most sought-after neighborhoods."
+            titleGold="Neighbourhood"
+            description="Discover premium rentals and homes for sale across Halifax's most sought-after neighbourhoods."
           />
         </div>
 

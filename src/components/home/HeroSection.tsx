@@ -9,12 +9,12 @@ import { cn } from '@/lib/utils'
 const TABS = ['Rent', 'Buy', 'Commercial'] as const
 type Tab = (typeof TABS)[number]
 
-const CITIES = ['All Cities', 'Manhattan', 'Brooklyn', 'Queens', 'The Bronx', 'Staten Island', 'Hoboken']
+const CITIES = ['All Areas', 'Downtown Halifax', 'North End', 'South End', 'Bedford', 'Clayton Park', 'Dartmouth', 'Fairview', 'Rockingham']
 const BEDROOMS = ['Any', 'Studio', '1', '2', '3', '4+']
 const MAX_PRICES: Record<Tab, string[]> = {
-  Rent: ['Any Price', '$1,500/mo', '$2,500/mo', '$3,500/mo', '$5,000/mo', '$7,500/mo', '$10,000+/mo'],
-  Buy: ['Any Price', '$500K', '$750K', '$1M', '$1.5M', '$2M', '$3M+'],
-  Commercial: ['Any Price', '$3,000/mo', '$5,000/mo', '$10,000/mo', '$20,000/mo', '$50,000+/mo'],
+  Rent: ['Any Price', '$1,500/mo', '$2,000/mo', '$2,500/mo', '$3,000/mo', '$4,000/mo', '$5,000+/mo'],
+  Buy: ['Any Price', '$300K', '$500K', '$700K', '$900K', '$1.2M', '$1.5M+'],
+  Commercial: ['Any Price', '$3,000/mo', '$5,000/mo', '$8,000/mo', '$15,000/mo', '$25,000+/mo'],
 }
 
 function Select({
