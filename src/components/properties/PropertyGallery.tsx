@@ -14,19 +14,19 @@ export function PropertyGallery({ images, title }: PropertyGalleryProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(0)
 
+  const prev = () => setActiveIndex((i) => (i - 1 + images.length) % images.length)
+  const next = () => setActiveIndex((i) => (i + 1) % images.length)
+
   useEffect(() => {
     if (!lightboxOpen) return
     const handler = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setLightboxOpen(false)
-      if (e.key === 'ArrowLeft') prev()
-      if (e.key === 'ArrowRight') next()
+      if (e.key === 'ArrowLeft') setActiveIndex((i) => (i - 1 + images.length) % images.length)
+      if (e.key === 'ArrowRight') setActiveIndex((i) => (i + 1) % images.length)
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [lightboxOpen, activeIndex])
-
-  const prev = () => setActiveIndex((i) => (i - 1 + images.length) % images.length)
-  const next = () => setActiveIndex((i) => (i + 1) % images.length)
+  }, [lightboxOpen, images.length])
 
   const main = images[0] ?? ''
   const thumbs = images.slice(1, 5)

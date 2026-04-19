@@ -5,8 +5,8 @@ import dynamic from 'next/dynamic'
 import { prisma } from '@/lib/prisma'
 import type { Metadata } from 'next'
 import {
-  MapPin, Bed, Bath, Square, Calendar, Car, Star, Share2, Heart,
-  CheckCircle, Home, ChevronRight, Ruler, Building2, Phone, Mail,
+  MapPin, Bed, Bath, Square, Car, Star, Share2, Heart,
+  CheckCircle, ChevronRight, Phone, Mail,
 } from 'lucide-react'
 import { PropertyGallery } from '@/components/properties/PropertyGallery'
 import { InquiryForm } from '@/components/shared/InquiryForm'

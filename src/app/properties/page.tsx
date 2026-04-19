@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, useEffect, useCallback, Suspense } from 'react'
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import dynamic from 'next/dynamic'
 import { motion, AnimatePresence } from 'framer-motion'
-import { SlidersHorizontal, LayoutGrid, List, Map, X, ChevronDown } from 'lucide-react'
+import { SlidersHorizontal, LayoutGrid, List, Map, ChevronDown } from 'lucide-react'
 import { PropertyFilters, DEFAULT_FILTERS, type FilterState } from '@/components/properties/PropertyFilters'
 import { PropertyGrid } from '@/components/properties/PropertyGrid'
 import type { PropertyCardData } from '@/components/properties/PropertyCard'
@@ -27,7 +27,6 @@ const SORT_OPTIONS = [
 
 function PropertiesContent() {
   const searchParams = useSearchParams()
-  const router = useRouter()
 
   const [filters, setFilters] = useState<FilterState>(() => ({
     ...DEFAULT_FILTERS,

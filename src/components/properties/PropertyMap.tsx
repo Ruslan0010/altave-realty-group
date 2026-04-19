@@ -1,8 +1,6 @@
 'use client'
 
 import { useEffect, useRef, useState, useCallback } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
 import { MapPin, Loader2 } from 'lucide-react'
 import type { PropertyCardData } from './PropertyCard'
 
